@@ -1,5 +1,5 @@
 '''
-Скрипт для проверки новых писем на Яндекс.почте и пересылке оповещений
+Скрипт для проверки новых писем на GMX.почте и пересылке оповещений
 в телеграм
 '''
 
@@ -18,8 +18,8 @@ load_dotenv()
 TG_BOT_TOKEN = os.environ.get('TG_BOT_TOKEN')
 TG_CHAT_ID = os.environ.get('TG_CHAT_ID')
 IMAP_URL = os.environ.get('IMAP_URL')
-YANDEX_LOGIN = os.environ.get('YANDEX_LOGIN')
-YANDEX_PASSWORD = os.environ.get('YANDEX_PASSWORD')
+GMX_LOGIN = os.environ.get('GMX_LOGIN')
+GMX_PASSWORD = os.environ.get('GMX_PASSWORD')
 
 
 def main():
@@ -51,7 +51,7 @@ def get_last_id():
 
 def check_yandex_mail(last_id):
     imap = imaplib.IMAP4_SSL(IMAP_URL)
-    imap.login(YANDEX_LOGIN, YANDEX_PASSWORD)
+    imap.login(GMX_LOGIN, GMX_PASSWORD)
     imap.select('INBOX')
     result, data = imap.uid('search', None, 'ALL')
     str_list_data = data[0].decode()
